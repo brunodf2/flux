@@ -12,7 +12,7 @@ import { ProductList } from "./styles";
 
 import * as CartActions from "../../store/modules/cart/actions";
 
-function Home({ addToCart, amount: soma }) {
+function Home({ addToCartRequest, amount: soma }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -30,8 +30,8 @@ function Home({ addToCart, amount: soma }) {
     setProducts(data);
   }
 
-  function handleAddProduct(product) {
-    addToCart(product);
+  function handleAddProduct(id) {
+    addToCartRequest(id);
   }
 
   return (
@@ -42,7 +42,7 @@ function Home({ addToCart, amount: soma }) {
           <strong>{product.title}</strong>
           <span>{product.priceFormatted}</span>
 
-          <button type="button" onClick={() => handleAddProduct(product)}>
+          <button type="button" onClick={() => handleAddProduct(product.id)}>
             <div>
               <MdShoppingCart size={16} color="#fff" /> {soma[product.id] || 0}
             </div>
